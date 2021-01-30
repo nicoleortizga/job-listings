@@ -1,5 +1,5 @@
 <template>
-  <div v-for="post in filteredData" :key="post.id">
+  <div>
     <div>
       <img
         :src="require(`../assets/images/${post.logo}`)"
@@ -9,7 +9,7 @@
     <div>
       <div>
         <span>{{ post.company }}</span>
-        <span v-if="post.new">NEW</span>
+        <span v-if="post.newJob">NEW</span>
         <span v-if="post.featured">FEATURED</span>
       </div>
       <div>
@@ -25,24 +25,35 @@
     </div>
 
     <div>
-      <span>Frontend</span>
-      <span>Senior</span>
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
+      <Tag
+        v-for="(tag, index) in tags"
+        :key="index"
+        :tag="tag"
+        @click="$emit('addFilterTag', tag)"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import Tag from "@/components/Tag.vue";
 export default {
+  components: {
+    Tag
+  },
   props: {
-    filteredData: {
+    post: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
+    tags: {
       type: Array,
       required: true,
-      default: () => []
+      default: () => {}
     }
-  }
+  },
+  emits: ["addFilterTag"]
 };
 </script>
 

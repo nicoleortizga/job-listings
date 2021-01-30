@@ -1,35 +1,58 @@
 <template>
   <div>
-    <Card :filteredData="filteredData" />
+    <div class="filter">
+      <Tag
+        v-for="(tag, index) in filterTags"
+        :key="`filter-${index}`"
+        :tag="tag"
+        @click="removeFilter(tag)"
+      />
+    </div>
+    <Card
+      v-for="post in filteredJobPosts"
+      :key="post.id"
+      :post="post"
+      :tags="[post.role, post.level, ...post.languages, ...post.tools]"
+      @add-filter-tag="addFilter"
+    />
   </div>
 </template>
 
 <script>
 import Card from "@/components/Card.vue";
+import Tag from "@/components/Tag.vue";
 
 export default {
   components: {
+    Tag,
     Card
   },
-  data() {
-    return {
-      selectedFilter: {}
-    };
-  },
   computed: {
-    jobData() {
-      return this.$store.state.jobData;
+    filteredJobPosts() {
+      return this.$store.getters.filteredData;
     },
-    filteredData() {
-      const x = this.selectedFilter.type,
-        filter = this.selectedFilter.filterText;
-
-      return this.jobData.filter((el) => {
-        if (el[x] !== undefined) {
-          return el[x].match(filter);
-        } else return true;
-      });
+    filterTags() {
+      return this.$store.getters.filterTags;
+    }
+  },
+  methods: {
+    addFilter(tagValue) {
+      this.$store.commit("addFilterTag", { tag: tagValue });
+    },
+    removeFilter(tagValue) {
+      this.$store.commit("removeFilterTag", { tag: tagValue });
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.filter {
+  background: orange;
+  border-radius: 5px;
+  width: 80%;
+  height: 54px;
+  margin: 1rem;
+  display: flex;
+}
+</style>

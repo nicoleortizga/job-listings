@@ -38,6 +38,9 @@ export default createStore({
         (_, index) => index !== indexOfTagToRemove
       );
       state.tags = updatedTags;
+    },
+    clearFilter(state) {
+      state.tags = [];
     }
   }
 });

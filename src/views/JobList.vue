@@ -1,31 +1,33 @@
 <template>
-  <div>
-    <div class="filter">
-      <Tag
-        v-for="(tag, index) in filterTags"
-        :key="`filter-${index}`"
-        :tag="tag"
-        @click="removeFilter(tag)"
+  <Header />
+  <div class="mx-auto mx-width-10 container responsive-padding">
+    <Filter
+      :filterTags="filterTags"
+      @remove-filter-tag="removeFilter"
+      @clear-filter="clearFilter"
+    />
+    <div class="card-container">
+      <Card
+        v-for="post in filteredJobPosts"
+        :key="post.id"
+        :post="post"
+        :tags="[post.role, post.level, ...post.languages, ...post.tools]"
+        @add-filter-tag="addFilter"
       />
     </div>
-    <Card
-      v-for="post in filteredJobPosts"
-      :key="post.id"
-      :post="post"
-      :tags="[post.role, post.level, ...post.languages, ...post.tools]"
-      @add-filter-tag="addFilter"
-    />
   </div>
 </template>
 
 <script>
+import Filter from "@/components/Filter.vue";
 import Card from "@/components/Card.vue";
-import Tag from "@/components/Tag.vue";
+import Header from "@/components/Header.vue";
 
 export default {
   components: {
-    Tag,
-    Card
+    Filter,
+    Card,
+    Header
   },
   computed: {
     filteredJobPosts() {
@@ -41,18 +43,22 @@ export default {
     },
     removeFilter(tagValue) {
       this.$store.commit("removeFilterTag", { tag: tagValue });
+    },
+    clearFilter() {
+      this.$store.commit("clearFilter");
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.filter {
-  background: orange;
-  border-radius: 5px;
-  width: 80%;
-  height: 54px;
-  margin: 1rem;
-  display: flex;
+.card-container {
+  margin-top: 5rem;
+}
+
+@media screen and (min-width: 630px) {
+  .card-container {
+    margin-top: 3rem;
+  }
 }
 </style>

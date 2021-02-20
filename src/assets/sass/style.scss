@@ -1,0 +1,119 @@
+@import "variables";
+
+body {
+  margin: 0;
+  font-size: $font-size;
+  font-family: "Open Sans", sans-serif;
+  background: $color-bg-cyan;
+}
+
+#app {
+  box-sizing: border-box;
+  max-width: $desktop;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: $color-primary;
+  &:visited {
+    text-decoration: none;
+  }
+  &:link {
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Spartan", sans-serif;
+}
+
+.list-unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.display-flex {
+  display: flex;
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &--center {
+    align-content: center;
+  }
+}
+
+.display-grid {
+  display: grid;
+  grid-gap: $unit / 2;
+
+  &--column {
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  }
+}
+
+.round {
+  border-radius: $unit / 2;
+}
+
+.border-left {
+  border-left: $color-primary solid;
+}
+
+.shadow {
+  box-shadow: 0 0 4px 0 #c8e4e4;
+}
+
+.mx-width-9 {
+  max-width: 900px;
+}
+
+.mx-width-10 {
+  max-width: 1100px;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+.container {
+  position: absolute;
+  top: 120px;
+  left: 5%;
+  right: 5%;
+}
+
+.responsive-padding {
+  padding: 0.5rem clamp(1rem, 5%, 3rem);
+}
+
+.round-tag {
+  padding: 1px 0.5rem;
+  border-radius: 10px;
+  color: $color-white;
+  font-size: $font-size - 2;
+
+  &--new-bg {
+    background: $color-primary;
+  }
+
+  &--featured-bg {
+    background: $color-darker-grayish-cyan;
+  }
+}
+
+.m-space {
+  margin-right: $unit;
+  margin-bottom: $unit;
+}

@@ -5,7 +5,7 @@
   >
     <div class="display-flex display-flex--wrap">
       <div
-        class="m-space"
+        class="m-space remove-wrapper"
         v-for="(tag, index) in filterTags"
         :key="`filter-${index}`"
       >
@@ -54,8 +54,13 @@ export default {
   border-radius: $unit - 4 0 0 $unit - 4;
 }
 
+.remove-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+}
+
 .btn-remove {
-  height: 30px;
+  margin: 0;
   background: $color-primary;
   color: $color-white;
   border: 0;

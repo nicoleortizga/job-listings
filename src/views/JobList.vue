@@ -58,7 +58,7 @@ export default {
 
 @media screen and (min-width: 630px) {
   .card-container {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
 }
 </style>

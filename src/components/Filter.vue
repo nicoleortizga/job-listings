@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="filterTags.length"
+    :style="{ visibility: filterTags.length ? 'visible' : 'hidden' }"
     class="filter responsive-padding shadow round mx-width-10"
   >
     <div class="display-flex display-flex--wrap">

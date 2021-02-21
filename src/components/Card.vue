@@ -78,7 +78,7 @@ p {
 
 .card {
   padding: $unit * 2;
-  margin: $unit * 2 0;
+  margin: $unit * 3 0;
   background: $color-white;
   border-radius: $unit - 4;
   position: relative;
